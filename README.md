@@ -190,7 +190,7 @@ Es un paradigma de programación, un estilo de programación. El clásico es el 
 
 ## Herencia
 
-* Reutilizacion. Definimos relaciones jerarquicas entre clases, ciertas cosas pueden ser reutilizadas. Un animal acuatico es un animal pero puede tener otras cosas distintivas. 
+* Reutilizacion de codigo de una clase base en una clase mas especifica. Definimos relaciones jerarquicas entre clases, ciertas cosas pueden ser reutilizadas. Un animal acuatico es un animal pero puede tener otras cosas distintivas. 
 
 ```
 class AnimalAcuatico extends Animal{
@@ -199,10 +199,79 @@ class AnimalAcuatico extends Animal{
 }
 ```
 
+* **Herencia Simple** -> Se apoya en el uso de la clase base para compartir sus atributos y metodos con otras clases derivadas. 
+* **Herencia multiple** -> Esto se puede hacer desde Phyton, se puede heredar de varias clases, pero, esto da a un problema, ya que si esas super clases comparten los mismos atributos y/o metodos, la subclase solo podra heredar de una de ellas. 
+
 ## Polimorfismo
 
 * Procesar objetos de distintas maneras. Un animal acuático no se mueve igual que uno terrestre. 
-* 
+* Podemos hacer sobrecarga de metodos, es sustituir los metodos provenientes de la clase base en la clase derivada, pero que se mantenga la firma del metodo. 
 
+## Recoleccion de Basura
 
+* Es la tecnica por la cual el entorno de objetos destruye de forma automatica, desvinculado la memoria usada para ello, los objetos que no tienen ninguna referencia a ellos. El programador no se preocupa por la liberacion de memoria. 
+* Esto no existe en C++ ni en Object Pascal. 
+
+# Inyección de Dependencias en Java
+
+## Que es una dependencia?
+
+* Cuando A usa cualquier metodo de B, podemos decir que B es una dependencia de A. 
+
+  ```java
+  class ClassA {
+  
+    ClassB classB = new ClassB(); //A crea una instancia de B
+  
+    int tenPercent() {
+      return classB.calculate() * 0.1d; //Reutiliza un metodo de B
+    }
+  }
+  ```
+
+  Esto nos da un problema. Si necesitamos reemplazar B con C, hay que recompilar A porque no tenemos manera de cambiar esa dependencia, ya que esta codificado dentro de A.
+
+## Principio de Inyección de Dependencias
+
+* Es el poder inyectar las dependencias cuando sea necesario en lugar de inicializarlas en la clase A.
+* Para esto nos conviene **Inyectar desde el constructor** de la siguiente forma:
+
+```
+class ClassA {
+
+  ClassB classB;
+
+  /* Constructor Injection */
+  ClassA(ClassB injected) { 
+    classB = injected;
+  }
+
+  int tenPercent() {
+    return classB.calculate() * 0.1d;
+  }
+}
+```
+
+Sigue habiendo una fuerte dependencia, pero ahora se puede inyectar desde afuera usando un constructor
+
+```
+class Main {
+  public static void main(String... args) {
+    /* Notice that we are creating ClassB fisrt */
+    ClassB classB = new ImprovedClassB();
+
+    /* Constructor Injection */
+    ClassA classA = new ClassA(classB);
+
+    System.out.println("Ten Percent: " + classA.tenPercent());
+  }
+}
+```
+
+Esto hace que:
+
+* La funcionalidad se mantenga intacta a diferencia de si hacemos la inyeccion por Setter.
+* Se elimina la inicializacion en A.
+* Podemos inyectar una subclase especializada en A.
+* El compilador nos pedira las dependencias necesarias al compilar.
 

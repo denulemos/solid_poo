@@ -1,0 +1,5 @@
+package org.formacion.ocp;
+
+public class GeneradorPrimosOrdenInverso {
+
+}
