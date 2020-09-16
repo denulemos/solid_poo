@@ -28,7 +28,7 @@ Son principios que formaban parte de un libro de "Desarrollo Agil de Software", 
 * Nuestras entidades (Clases, módulos, etc..) deben ser abiertas para extenderse pero cerradas para ser cambiadas. No se debe modificar el código ya existente en la extensión.
 * Por ejemplo, si tenemos la entidad Pintor, que debe pintar figuras, y cada figura se pinta de manera distinta, nos conviene extender cada figura a una clase figura general, y que la misma tenga un método abstracto que sea "pintar()" para que cada una de las figuras la implemente a su manera en la clase.
 
-```
+```java
 interface Figura{
 void pinta();
 }
@@ -56,7 +56,7 @@ class Circulo implements Figura {
 * `T obj = new T();` y `T obj = new S()`, S seria un subtipo de T. Todas las propiedades que el programa requiere de T, también se deberían cumplir en S.
 * `Integer[] array` y `Object[] arrayObjects` <- Alguno es subtipo del otro? Integer[] es subtipo de Object[], es por eso que a un array de obj podemos asignarle un array de Integers, pero con esto, no podemos meter Strings, ya que el array Integer[] sigue sin aceptar estos tipos de datos.
 
-```
+```java
 Date date = new Date();
 Timestamp ts = new Timestamp (date.getTime());
 
@@ -75,7 +75,7 @@ public void enviaMensaje(Object object){}
 
 Pero, al cliente le sale otro requisito, comunicarnos igual pero con niveles de encriptación
 
-```
+```java
 enum Encriptacion {
 //NIVELES DE ENCRIPTACION
 NINGUNA, ENCRIPTACION_DEBIL, ENCRIPTACION_FUERTE
@@ -91,13 +91,13 @@ public void enviaMensaje(Object object){}
 
 Un día nos damos cuenta de que el cliente esta usando directo la clase, el cliente debe depender de abstracciones.
 
-```
+```java
 public class ComunicadorImplementacion implements Comunicador {}
 ```
 
 Si viene un cliente nuevo, por ahí, quiere enviar mensajes pero sin encriptación. ¿El cliente debería saber la existencia de la encriptación si no la necesita? **Los clientes no deben ser forzados a depender de métodos que ellos no usan** . La idea es separar la interface original en 2 componentes.
 
-```
+```java
 public class Comunicador { //Podemos enviar mensjaes o objetos genericos a otro sistema
 public void enviaMensaje(String mensaje){}
 public void enviaMensaje(Object object){}
@@ -264,9 +264,9 @@ persona.nombre = nombre;
 
 Es un paradigma de programación, un estilo de programación. El clásico es el procedural, una instrucción tras otra, y nada mas, con funciones y datos. en POO nos concentramos mas en pensar en objetos, en vez de pensar en funciones pensamos en interacciones. Nos abstraemos mas.
 
-* **Objeto** -> Conjunto de métodos y atributos. Su construcción depende del problema a solucionar (Modelado de datos). La definición global de objeto es **Clase**.
-  
-  ```
+* **Objeto** -> Conjunto de métodos y atributos. Su construcción depende del problema a solucionar (Modelado de datos). La definición global de objeto es **Clase**. 
+
+  ```java
   class Animal {
   protected edad;
   constructor(edad){
@@ -283,6 +283,15 @@ Es un paradigma de programación, un estilo de programación. El clásico es el 
   const gato = new Animal(3);
   ```
 
+* **Proceso de Abtraccion** : La idea es buscar objetos de la vida real, y reconocer sus responsabilidades y caracteristicas, es el clasificarlos.
+* **Responsabilidad del Objeto ¿Que sabe hacer?**: Una vez descubierto el objeto, debemos reconocer que puede o que deberia hacer el mismo. Estas responsabilidades/habilidades terminaran siendo **metodos**.
+* **Metodos**: Son funciones que reciben argumentos de entrada y pueden devolver una sola cosa, o ninguna (En Phyton, o en Golang, se pueden devolver varias). Los metodos tienen una **firma**, es como defino al metodo, en conjunto con sus parametros.
+```java
+public int Metodo(int parametro, int parametro2)
+```
+* **Visibilidad** : Esto es valido para los metodos, no se recomienda para los atributos (Se recomienda tenerlos de manera privada para cumplir con el **encapsulamiento**).
+
+
 ## Encapsulación - Encapsulamiento.
 
 * Cada objeto es responsable de su informacion y estado. La unica manera de modificar algo de la misma, es mediante los metodos propios del objeto.
@@ -298,7 +307,7 @@ Es un paradigma de programación, un estilo de programación. El clásico es el 
 
 * Reutilizacion de codigo de una clase base en una clase mas especifica. Definimos relaciones jerarquicas entre clases, ciertas cosas pueden ser reutilizadas. Un animal acuatico es un animal pero puede tener otras cosas distintivas.
 
-```
+```java
 class AnimalAcuatico extends Animal{
  protected numeroAletas;
  nadar(){}
@@ -342,7 +351,7 @@ class AnimalAcuatico extends Animal{
 * Es el poder inyectar las dependencias cuando sea necesario en lugar de inicializarlas en la clase A.
 * Para esto nos conviene **Inyectar desde el constructor** de la siguiente forma:
 
-```
+```java
 class ClassA {
 
   ClassB classB;
@@ -360,7 +369,7 @@ class ClassA {
 
 Sigue habiendo una fuerte dependencia, pero ahora se puede inyectar desde afuera usando un constructor
 
-```
+```java
 class Main {
   public static void main(String... args) {
     /* Notice that we are creating ClassB fisrt */
