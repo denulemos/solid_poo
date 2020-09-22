@@ -1,4 +1,4 @@
-# SOLID
+# SOLID ❤️ 
 
 Este repositorio esta hecho tomando como base el siguiente curso de Udemy => https://www.udemy.com/course/patrones-de-diseno-y-principios-solid/ .
 
@@ -131,7 +131,7 @@ public void enviaMensaje(Object object){}
   Operaciones básicas -> Api Acceso .
   Acceso.
 
-# Patrones de Diseño
+# Patrones de Diseño ❤️ 
 
 * Estos conceptos nacen de un libro de diseño de Arquitectura, "A pattern Language". Se escribió otro libro luego, pero ya referido a Programación, con ejemplos en C++, con distintos patterns, o soluciones a problemas.
 * Es como una receta. La descripcion de un problema recurrente y su solucion.
@@ -147,7 +147,7 @@ public void enviaMensaje(Object object){}
   * Mantenible.
   * Reusable.
 
-# Patrones Creacionales
+# Patrones Creacionales ❤️ 
 
 ## Abstract Factory Pattern
 
@@ -260,12 +260,12 @@ persona.nombre = nombre;
 }
 ```
 
-# Principios Orientación a Objetos
+# Principios Orientación a Objetos ❤️ 
 
 Es un paradigma de programación, un estilo de programación. El clásico es el procedural, una instrucción tras otra, y nada mas, con funciones y datos. en POO nos concentramos mas en pensar en objetos, en vez de pensar en funciones pensamos en interacciones. Nos abstraemos mas.
 
-* **Objeto** -> Conjunto de métodos y atributos. Su construcción depende del problema a solucionar (Modelado de datos). La definición global de objeto es **Clase**. 
-
+* **Objeto** -> Conjunto de métodos y atributos. Su construcción depende del problema a solucionar (Modelado de datos). La definición global de objeto es **Clase**.
+  
   ```java
   class Animal {
   protected edad;
@@ -282,15 +282,15 @@ Es un paradigma de programación, un estilo de programación. El clásico es el 
   const perro = new Animal(2);
   const gato = new Animal(3);
   ```
-
 * **Proceso de Abtraccion** : La idea es buscar objetos de la vida real, y reconocer sus responsabilidades y caracteristicas, es el clasificarlos.
 * **Responsabilidad del Objeto ¿Que sabe hacer?**: Una vez descubierto el objeto, debemos reconocer que puede o que deberia hacer el mismo. Estas responsabilidades/habilidades terminaran siendo **metodos**.
 * **Metodos**: Son funciones que reciben argumentos de entrada y pueden devolver una sola cosa, o ninguna (En Phyton, o en Golang, se pueden devolver varias). Los metodos tienen una **firma**, es como defino al metodo, en conjunto con sus parametros.
+
 ```java
 public int Metodo(int parametro, int parametro2)
 ```
-* **Visibilidad** : Esto es valido para los metodos, no se recomienda para los atributos (Se recomienda tenerlos de manera privada para cumplir con el **encapsulamiento**).
 
+* **Visibilidad** : Esto es valido para los metodos, no se recomienda para los atributos (Se recomienda tenerlos de manera privada para cumplir con el **encapsulamiento**).
 
 ## Encapsulación - Encapsulamiento.
 
@@ -305,7 +305,9 @@ public int Metodo(int parametro, int parametro2)
 
 ## Herencia
 
-* Reutilizacion de codigo de una clase base en una clase mas especifica. Definimos relaciones jerarquicas entre clases, ciertas cosas pueden ser reutilizadas. Un animal acuatico es un animal pero puede tener otras cosas distintivas.
+* Permite construir una clase (subclase) a partir de otra clase (superclase), la subclase, entonces, heredara todos los atributos y metodos de la superclase.
+* Si dos clases son subclases de la misma superclase, ambas clases estan en una misma **jerarquia** en el **Arbol de herencia**.
+* Un animal acuatico es un animal pero puede tener otras cosas distintivas.
 
 ```java
 class AnimalAcuatico extends Animal{
@@ -314,20 +316,131 @@ class AnimalAcuatico extends Animal{
 }
 ```
 
-* **Herencia Simple** -> Se apoya en el uso de la clase base para compartir sus atributos y metodos con otras clases derivadas.
+* **Herencia Simple** -> Una clase solo puede tener una sola superclase directa. (Caso Java), pero, se pueden tener muchas superclases indirectas, todo esto, hasta llegar a la clase `Object`, la clase base de donde heredan todas las clases.
 * **Herencia multiple** -> Esto se puede hacer desde Phyton, se puede heredar de varias clases, pero, esto da a un problema, ya que si esas super clases comparten los mismos atributos y/o metodos, la subclase solo podra heredar de una de ellas.
+
+### Generalizacion y Especializacion.
+
+Las clases mas altas en el arbol de herencias, son las clases mas **genericas**, y las clases mas bajas en la misma, son clases mas **especializadas**.
+
+* Cuando se sube en el arbol de herencia, se llama **Generalizacion**
+* Cuando se baja, se llama **Especializacion**
+  
+  ![Generalizacion](./assets/generalizacion.jpg)
+
+### Sintaxis
+
+* Definir una subclase -> `class Subclase extends SuperClase`
+* SIEMPRE hay un extends en todas las clases. Por default es -> `class SubClase extends Object`, apunta a la raiz jerarquica de todas las clases.
+
+### Miembros heredados
+
+* Se le dice **miembros** a todos los elementos que son heredados, como los metodos y atributos de la Super clase.
+
+La subclase hereda:
+
+* Metodos
+* Atributos
+* NO hereda al constructor.
+* NO puede acceder a los miembros **private**, solo puede acceder directamente a los miembros **public y protected**. Si estan ambos en el mismo paquete, tambien tiene acceso a los miembros **default**.
+
+### Acceso a los atributos
+
+Por ejemplo, tenemos la siguiente superclase:
+
+```java
+public class Superclase {
+public String atributoPublic = "atributoPublic";
+String atributoDefault = "atributoDefault";
+protected String atributoProtected = "atributoProtected";
+private String atributoPrivate = "atributoPrivate";
+
+}
+```
+
+La subclase debera tener la siguiente estructura:
+
+```java
+public class Subclase extends Superclase {
+public String atributoPrueba;
+
+   public Subclase() {
+
+     // Acceso permitido. 
+
+       atributoPrueba = atributoPublic;
+
+       atributoPrueba = atributoDefault;
+
+       atributoPrueba = atributoProtected;
+
+       // Acceso no permitido. Se produce un error de compilación:
+
+       // Variable atributoPrivate in Superclase not accessible from Subclase
+
+       atributoPrueba = atributoPrivate;
+
+   }
+
+}
+```
+
+### Acceso a los metodos
+
+Tendriamos la siguiente SuperClase:
+
+```java
+public class Superclase {
+
+   public void metodoPublic() {...}
+
+   void metodoDefault() {...}
+
+   protected void metodoProtected() {...}
+
+   private void metodoPrivate() {...}
+
+}
+```
+
+La subclase deberia tener esta estructura:
+
+```java
+
+public class Subclase extends Superclase {
+
+   public void pruebaDeAccesoAMetodos() {
+
+       // Acceso permitido.
+
+       metodoPublic();
+
+       metodoDefault();
+
+       metodoProtected();
+
+       // Acceso no permitido. Se produce un error de compilación:
+
+       // No method matching metodoPrivate() found in Subclase
+
+       metodoPrivate();
+
+   }
+
+}
+```
 
 ## Polimorfismo
 
 * Procesar objetos de distintas maneras. Un animal acuático no se mueve igual que uno terrestre.
 * Podemos hacer sobrecarga de metodos, es sustituir los metodos provenientes de la clase base en la clase derivada, pero que se mantenga la firma del metodo.
 
-## Recoleccion de Basura
+## Recoleccion de Basura 
 
 * Es la tecnica por la cual el entorno de objetos destruye de forma automatica, desvinculado la memoria usada para ello, los objetos que no tienen ninguna referencia a ellos. El programador no se preocupa por la liberacion de memoria.
 * Esto no existe en C++ ni en Object Pascal.
 
-# Inyección de Dependencias en Java
+# Inyección de Dependencias en Java ❤️ 
 
 ## Que es una dependencia?
 
