@@ -2,20 +2,20 @@
 
 * ¿Tengo Java instalado? Ir al cmd y correr un`java -version` y la misma, si tenemos Java configurado, nos mostrara la version actual.
 
-# Caracteristicas ❤️
+# Características ❤️
 
 * Es un lenguaje Case-Sensitive. Toda sentencia finaliza con punto y coma.
-* Al principio Java fue llamado Oak, y fue creado por la empresa Sun, antes de la explosion de internet. Busco una interfaz más cómoda, un lenguaje más fácil de usar y diversidad para escribir un código que funcione para varios dispositivos
-* El mismo codigo es multiplataforma. Tambien, si tenes un browser compatible con Java, se puede ejecutar cualquier aplicacion en la misma.
+* Al principio Java fue llamado Oak, y fue creado por la empresa Sun, antes de la explosión de internet. Busco una interfaz más cómoda, un lenguaje más fácil de usar y diversidad para escribir un código que funcione para varios dispositivos
+* El mismo código es multiplataforma. También, si tenes un browser compatible con Java, se puede ejecutar cualquier aplicación en la misma.
 * Es orientado a objetos.
-* Esta hecho en base a C++, pero Java es mas rapido de aprender y maneja mejor cuestiones de gestion de memoria.
-* No es tan rapido como C por su tipo de lenguaje Byte Code que debe ser traducido en cada PC que compilará el lenguaje.
+* Esta hecho en base a C++, pero Java es mas rápido de aprender y maneja mejor cuestiones de gestión de memoria.
+* No es tan rápido como C por su tipo de lenguaje Byte Code que debe ser traducido en cada PC que compilará el lenguaje.
 * Todas las clases de Java heredan de la clase base, `Object`.
-* **Punteros** -> En Java no existen punteros (Invocar tipos de memoria), estos causaban muchos errores de compilacion en C.
-* **Variables Globales** -> Lo unico global en Java son los nombres de las Clases. Las variables pueden cambiar segun lo deseado.
+* **Punteros** -> En Java no existen punteros (Invocar tipos de memoria), estos causaban muchos errores de compilación en C.
+* **Variables Globales** -> Lo único global en Java son los nombres de las Clases. Las variables pueden cambiar según lo deseado.
 * **Sentencias Goto** -> Sentencias que rompen la estructura del programa. Java reemplaza estos con `break` y `continue`.
-* **Asignacion Memoria** -> En C y C++ habia que reservar memoria y luego liberarla cuando ya no era usada. Java posee un **Garbage Collector** que permite al programador olvidarse de estas gestiones.
-* Al principio Java fue llamado Oak, y fue creado por la empresa Sun, antes de la explosion de internet. Busco una interfaz más cómoda, un lenguaje más fácil de usar y diversidad para escribir un código que funcione para varios dispositivos.
+* **Asignación Memoria** -> En C y C++ había que reservar memoria y luego liberarla cuando ya no era usada. Java posee un **Garbage Collector** que permite al programador olvidarse de estas gestiones.
+* Al principio Java fue llamado Oak, y fue creado por la empresa Sun, antes de la explosión de internet. Busco una interfaz más cómoda, un lenguaje más fácil de usar y diversidad para escribir un código que funcione para varios dispositivos.
 
 
 
