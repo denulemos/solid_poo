@@ -15,9 +15,8 @@
 * **Variables Globales** -> Lo único global en Java son los nombres de las Clases. Las variables pueden cambiar según lo deseado.
 * **Sentencias Goto** -> Sentencias que rompen la estructura del programa. Java reemplaza estos con `break` y `continue`.
 * **Asignación Memoria** -> En C y C++ había que reservar memoria y luego liberarla cuando ya no era usada. Java posee un **Garbage Collector** que permite al programador olvidarse de estas gestiones.
+* **Arquitectura Neutra** -> El compilador Java compila el codigo a un archivo independiente de la arquitectura de la PC donde sera ejecutado. Cualquier PC con solo tener el Runtime puede ejecutar el codigo.
 * Al principio Java fue llamado Oak, y fue creado por la empresa Sun, antes de la explosión de internet. Busco una interfaz más cómoda, un lenguaje más fácil de usar y diversidad para escribir un código que funcione para varios dispositivos.
-
-
 
 ### Buenas practicas de Sintaxis
 
@@ -85,6 +84,43 @@ Necesito guardar un conjunto de 5 enteros que se mantengan siempre ordenados, ta
 **Metodos para modelar los datos** -> Los dos metodos
 **Regla a Respetar** -> Que los numeros se mantengan ordenados
 
+**¿Que son TDA?**
+
+* Pila (El primero que entra es el primero que sale, LIFO)
+* Cola (El primero que entra es el primero que sale, FIFO)
+* Cola con Prioridad (El orden de salida esta dado por prioridad, el primero en salir es el dato con mayor prioridad)
+* Conjunto (Coleccion de datos unicos, se obtiene el elemento al azar)
+* Diccionario Simple.
+* Diccionario Multiple.
+* Arbol (Elementos ordenados por jerarquia, entre dos elementos se define padre e hijo. La raiz del arbol no tiene padre)
+* Grafo (Elementos llamados vertices relacionados por un conjunto de aristas, y cada arista tiene un valor asociado, el peso)
+
+## Diccionario Simple
+
+Conjunto de pares asociados con clave y valor. Las claves son unicas y no pueden ser nulas. Cada clave tiene un solo valor.
+
+**Metodos**
+
+* `Inicializar()` -> Inicializa diccionario.
+* `Agregar (int c, int x)` -> Agrega un elemento x a una clave c. El diccionario debe estar inicializado y la clave no debe ser repetida.
+  Si la clave es nueva, se agrega a la primera posicion libre del vector, y si la clave existe no se actualiza.
+* `Eliminar (int c)` -> Elimina la clave que pasas por parametro. Debe existir. Al eliminar, se mueve al elemento que estaba en la posicion anterior en el vector a la posicion del elemento que se saco.
+* `int Obtener (int c)` -> Devuelve el elemento de la clave. No lo elimina.
+* `ConjuntoTDA claves()`-> Devuelve el conjunto de claves del diccionario.
+
+## Diccionario Multiple
+
+Lo mismo que el simple pero pueden haber muchos valores en una sola clave
+
+**Metodos**
+
+* `inicializar()`
+* `agregar(int c, int x)`
+* `eliminar(int c)`
+* `eliminarValor (int c, int x)` -> Elimina el valor de la clave
+* `ConjuntoTDA obtener (int c)` -> Devuelve el conjunto de valores bajo una clave.
+* `ConjuntoTDA claves()` -> Devuelve todas las claves vigentes
+
 ## Colas
 
 ![jvm](./assets/cola.jpg)
@@ -136,5 +172,5 @@ Sacamos la primera caja:
 
 ## Nodo vs Dato
 
-No hay que confundir al **nodo con el dato**. El nodo es el contenedor circunstancial del dato. No se puede acceder a la cadena de nodos. 
+No hay que confundir al **nodo con el dato**. El nodo es el contenedor circunstancial del dato. No se puede acceder a la cadena de nodos.
 
