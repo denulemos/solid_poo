@@ -1,6 +1,0 @@
-INDEX VERSION 1.131+C:\Codigo\SOLID\.metadata\.plugins\org.eclipse.jdt.core
-552630812.index
-2060518626.index
-1057386876.index
-2347465945.index
-3762089373.index
