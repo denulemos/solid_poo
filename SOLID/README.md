@@ -1,4 +1,4 @@
-# SOLID 🚀️ 
+# SOLID 🚀️
 
 ## Origen
 
@@ -135,12 +135,12 @@ public void enviaMensaje(Object object){}
 * Estudio de los lenguajes -> Vocabulario, Gramática y Sintaxis (Estructura de las oraciones).
 * **Creational (Factory, Abstract Factory y Singleton)**, **Estructurales (Decorator)** y de **Comportamiento (Strategy)** son los tipos de patterns que se establecieron, con 23 patrones en cada categoría.
 * Supongamos que queremos hacer una maquina de reconocer monedas, ponemos monedas y la maquina reconoce el valor de la misma. Podemos construir un solo componente que identifique los tamaños de todas las monedas de distinto valor, y si no es aceptada, se devuelve. Esto nos daría los siguientes problemas ->
-  
+
   * Sera difícil de reusar.
   * Responderá mal a los cambios (Y si cambian las monedas?).
-  
+
   Entonces en lugar de hacer una maquina que reconozca todas las monedas, hacemos una maquina que reconozca un solo tipo de moneda. Si la rechaza, la pasa a la proxima maquina, y asi sucesivamente, si es rechazada por todas, la moneda es rechazada y devuelta. Esto hace que sea:
-  
+
   * Mantenible.
   * Reusable.
 
@@ -262,7 +262,7 @@ persona.nombre = nombre;
 Es un paradigma de programación, un estilo de programación. El clásico es el procedural, una instrucción tras otra, y nada mas, con funciones y datos. en POO nos concentramos mas en pensar en objetos, en vez de pensar en funciones pensamos en interacciones. Nos abstraemos mas.
 
 * **Objeto** -> Conjunto de métodos y atributos. Su construcción depende del problema a solucionar (Modelado de datos). La definición global de objeto es **Clase**.
-  
+
   ```java
   class Animal {
   protected edad;
@@ -272,9 +272,9 @@ Es un paradigma de programación, un estilo de programación. El clásico es el 
   envejecer(){
   this.edad += 1;
   }
-  
+
   }
-  
+
   //Ambos son animales pero son independientes entre si
   const perro = new Animal(2);
   const gato = new Animal(3);
@@ -291,362 +291,10 @@ public int Metodo(int parametro, int parametro2)
 
 ## Encapsulación - Encapsulamiento. 👀️
 
-* Cada objeto es responsable de su informacion y estado. La unica manera de modificar algo de la misma, es mediante los metodos propios del objeto.
-* Los atributos internos del objeto deberian ser inaccesibles. Deberian manejarse mediante getters y setters.
+*
 
-## Abstracción. 👀️
 
-* Debemos pensar en los objetos como cajas negras. No nos interesa como se comportan de forma interna, solo sabemos como interactuar con ellos.
-* Somos libres de cambiar la implementacion.
-* Abre las puertas al TDD.
 
-## Herencia 👀️
-
-* Permite construir una clase (subclase) a partir de otra clase (superclase), la subclase, entonces, heredara todos los atributos y metodos de la superclase.
-* Si dos clases son subclases de la misma superclase, ambas clases estan en una misma **jerarquia** en el **Arbol de herencia**.
-* Un animal acuatico es un animal pero puede tener otras cosas distintivas.
-
-```java
-class AnimalAcuatico extends Animal{
- protected numeroAletas;
- nadar(){}
-}
-```
-
-* **Herencia Simple** -> Una clase solo puede tener una sola superclase directa. (Caso Java), pero, se pueden tener muchas superclases indirectas, todo esto, hasta llegar a la clase `Object`, la clase base de donde heredan todas las clases.
-* **Herencia multiple** -> Esto se puede hacer desde Phyton, se puede heredar de varias clases, pero, esto da a un problema, ya que si esas super clases comparten los mismos atributos y/o metodos, la subclase solo podra heredar de una de ellas.
-
-### Generalizacion y Especializacion.
-
-Las clases mas altas en el arbol de herencias, son las clases mas **genericas**, y las clases mas bajas en la misma, son clases mas **especializadas**.
-
-* Cuando se sube en el arbol de herencia, se llama **Generalizacion**
-* Cuando se baja, se llama **Especializacion**
-  
-  ![Generalizacion](./assets/generalizacion.jpg)
-
-### Sintaxis
-
-* Definir una subclase -> `class Subclase extends SuperClase`
-* SIEMPRE hay un extends en todas las clases. Por default es -> `class SubClase extends Object`, apunta a la raiz jerarquica de todas las clases.
-
-### Miembros heredados
-
-* Se le dice **miembros** a todos los elementos que son heredados, como los metodos y atributos de la Super clase.
-
-La subclase hereda:
-
-* Metodos
-* Atributos
-* NO hereda al constructor.
-* NO puede acceder a los miembros **private**, solo puede acceder directamente a los miembros **public y protected**. Si estan ambos en el mismo paquete, tambien tiene acceso a los miembros **default**.
-* Esto se hace ya que, si la subclase pudiera acceder a los miembros privados de la superclase, creariamos subclases para acceder facilmente, y esto violaria el **principio de encapsulamiento**, solo se puede acceder a los mismos mediante los `Getter` y `Setter` publicos de la superclase.
-
-### Acceso a los atributos
-
-Por ejemplo, tenemos la siguiente superclase:
-
-```java
-public class Superclase {
-public String atributoPublic = "atributoPublic";
-String atributoDefault = "atributoDefault";
-protected String atributoProtected = "atributoProtected";
-private String atributoPrivate = "atributoPrivate";
-
-}
-```
-
-La subclase debera tener la siguiente estructura:
-
-```java
-public class Subclase extends Superclase {
-public String atributoPrueba;
-
-   public Subclase() {
-
-     // Acceso permitido. 
-
-       atributoPrueba = atributoPublic;
-
-       atributoPrueba = atributoDefault;
-
-       atributoPrueba = atributoProtected;
-
-       // Acceso no permitido. Se produce un error de compilación:
-
-       // Variable atributoPrivate in Superclase not accessible from Subclase
-
-       atributoPrueba = atributoPrivate;
-
-   }
-
-}
-```
-
-### Acceso a los metodos
-
-Tendriamos la siguiente SuperClase:
-
-```java
-public class Superclase {
-
-   public void metodoPublic() {...}
-
-   void metodoDefault() {...}
-
-   protected void metodoProtected() {...}
-
-   private void metodoPrivate() {...}
-
-}
-```
-
-La subclase deberia tener esta estructura:
-
-```java
-public class Subclase extends Superclase {
-
-   public void pruebaDeAccesoAMetodos() {
-
-       // Acceso permitido.
-
-       metodoPublic();
-
-       metodoDefault();
-
-       metodoProtected();
-
-       // Acceso no permitido. Se produce un error de compilación:
-
-       // No method matching metodoPrivate() found in Subclase
-
-       metodoPrivate();
-
-   }
-
-}
-```
-
-### ¿Y si tengo atributos con el mismo nombre entre sub y super?
-
-Si la subclase posee un atributo con el mismo nombre de un atributo de la superclase, esta, quedara oculta para la subclase, es decir, la subclase solo podra acceder a su propio atributo.
-Podra acceder a ese mismo atributo de la superclase mediante `super`.
-
-Por ejemplo, tenemos la siguiente superclase:
-
-```java
-public class ClaseA {
-
-   protected int x = 1;
-
-   public int getX() { return x; }
-
-   public int get10X () { return 10 * x; }
-
-}
-```
-
-Creamos una subclase que declare una variable con el mismo nombre, pero con distinto valor, y los mismos metodos.
-
-```java
-public class ClaseB extends ClaseA {
-
-   private int x = 5;
-
-   @Override
-
-   public int getX() { return x; }
-
-   public int getSuperX() { return super.x; }
-
-}
-```
-
-Entonces, al momento de llamar a estos atributos y metodos desde el main..
-
-```java
-public class Test {
-
-   public static void main(String [] args) {
-
-       ClaseB objetoClaseB = new ClaseB();
-
-       // Accede al atributo x declarado en ClaseB (devuelve 5)
-
-       System.out.println(objetoClaseB.getX());
-
-       // Accede al atributo x declarado en ClaseA al usar super (devuelve 1)
-
-       System.out.println(objetoClaseB.getSuperX());
-
-       // Accede al atributo x de la ClaseA sin usar super (devuelve 10)
-
-       System.out.println(objetoClaseB.get10X());
-
-   }
-
-}
-```
-
-### Redefinicion y Sobrecarga
-
-Redefinir un metodo es volver a escribirlo con la misma firma en la subclase, pisando a la superclase.
-**En java, la firma del metodo NO incluye al tipo de dato que devuelve**
-
-* **Sobrecarga** -> Definir un metodo con la misma firma pero con distinta cantidad de
-  parametros de entrada. Un ejemplo, son los constructores por defecto y con parametros.
-* **@Override** -> Es una anotacion que no se compilará, si no que le indica al compilador que un metodo heredado esta siendo sobreescrito.
-
-## Polimorfismo 👀️
-
-![PolimorfismoUml](./assets/poli1.jpg)
-
-* El polimorfismo es la principal aplicacion de la Herencia, es el principal motivo de las clases Abtractas.
-* Tambien conocido como **Ligadura Tardia / Late Binding**, esta ligadura se produce en tiempo de ejecucion.
-* "Mismo mensaje, distinta implementacion"
-* Consiste en implementar/reemplazar el metodo de una clase con otro metodo con la misma firma pero escrito en otra clase.
-* Procesar objetos de distintas maneras. Un animal acuático no se mueve igual que uno terrestre.
-
-### ¿Qué necesito?
-
-* Que las clases implicadas tengan declaradas de forma directa o indirecta, un metodo con la **misma firma**
-* Que la variable que guarde el objeto sea de la clase de **mayor jerarquia** entre todas (La que muchos objetos tengan en común)
-* Que no sea un metodo de clase (`static`)
-* Que no sea privado, porque no se puede heredar
-* Que no haya sido declarado `final` ya que no podrá ser definido
-* Los objetos que se usan de forma poliformica deben **saber responder al mensaje que se les envia**
-
-### Upcasting
-
-```java
-Perro fido; //Fido es una subclase de mascota
-Mascota a;
-fido = new Perro("Fido", "Bull Dog"); //Declaramos un nuevo perro
-a = fido; //Asignamos a la variable mascota a Fido, un perro
-```
-
-Con esto, solo podremos acceder a los atributos y metodos de la clase asociada, por ejemplo:
-
-* `a.getNombre()` y `fido.getNombre()` -> Devolveran fido.
-* `a.getRaza()` -> NO es valido, ya que `getRaza` no forma parte de la clase animal.
-* `fido.getRaza()` -> SI es valido, ya que `getRaza` si forma parte de la clase perro.
-
-### Downcasting
-
-```java
-Perro fido;
-Mascota a;
-Perro mismoFido;
-
-fido = new Perro("Fido", "Bull Dog");
-a= fido;
-mismoFido = (Perro) a;
-```
-
-* Puede suceder un error cuando la clase a la que pertenece el objeto no coincide con el puntero, para eso, usamos el  `instanceOf()`
-  ```java
-  if (a instanceof Perro){ //Si a es una instancia de Perro
-  mismoFido = (Perro) a;
-  }
-  ```
-
-### Ejemplos de uso
-
-El dueño de una veterinaria tiene lugar para alojar hasta 5 mascotas que ofrece a quienes quieran adoptarlos. Hay Perros y Gatos. Cuando alguien viene a elegir una mascota, le pide a cada uno que haga un saludo como sabe hacerlo.
-
-![PolimorfismoUml](./assets/poli2.jpg)
-
-* Metodos constructores del metodo `saludar()`
-
-**Clase Mascota**
-
-```java
-public abstract class Mascota {
-protected String nombre;
-
-Mascota (String nom){
-nombre = nom;
-}
-
-public abstract void saludar();
-
-public String getNombre(){
-return nombre;
-}
-
-}
-```
-
-**Clase Perro**
-
-```java
-public class Perro extends Mascota{
-private String raza;
-
-Perro(String nom, String raza){
-super(nom);
-this.raza = raza;
-}
-
-public void saludar(){
-System.out.println("Wof");
-
-}
-
-public String getRaza(){
-return raza;
-}
-
-}
-```
-
-**Clase Gato**
-
-```java
-public class Gato extends Mascota {
- Gato(String nom){
-super(nom);
-}
-
-public void saludar(){
-System.out.println("Miau");
-
-}
-}
-```
-
-* Metodo `darBienvenida()` que le pida a cada mascota que salude
-
-```java
-public class Veterinaria {
-Mascota[] mascotas = new Mascota[5];
-
-Veterinaria(){
-mascotas[0] = new Perro... (Creamos a todas las mascotas en la lista)
-}
-
-public void darBienvenida(){
-for (Mascota mac : mascotas){
-mac.saludar();
-}
-}
-
-}
-```
-
-* Metodo `mostrarRazas()` que muestre las razas de los perros.
-
-```java
-public void mostrarRazas(){
-Perro p;
-for (Mascota mac : mascotas){
-if (mac instanceof Perro){
-System.out.println(mac.getRaza());
-}
-}
-
-}
-```
 
 ## Recoleccion de Basura 👀️
 
@@ -658,18 +306,18 @@ System.out.println(mac.getRaza());
 ## Qué es una dependencia?
 
 * Cuando A usa cualquier metodo de B, podemos decir que B es una dependencia de A.
-  
+
   ```java
   class ClassA {
-  
+
     ClassB classB = new ClassB(); //A crea una instancia de B
-  
+
     int tenPercent() {
       return classB.calculate() * 0.1d; //Reutiliza un metodo de B
     }
   }
   ```
-  
+
   Esto nos da un problema. Si necesitamos reemplazar B con C, hay que recompilar A porque no tenemos manera de cambiar esa dependencia, ya que esta codificado dentro de A.
 
 ## Principio de Inyección de Dependencias
@@ -715,4 +363,3 @@ Esto hace que:
 * Se elimina la inicializacion en A.
 * Podemos inyectar una subclase especializada en A.
 * El compilador nos pedira las dependencias necesarias al compilar.
-
